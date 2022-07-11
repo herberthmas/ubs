@@ -1,0 +1,67 @@
+param location string 
+
+param clusterName string 
+
+param nodeCount int 
+param vmSize string 
+
+resource aks 'Microsoft.ContainerService/managedClusters@2021-05-01' = {
+  name: clusterName
+  location: location
+  identity: {
+    type: 'SystemAssigned'
+  }
+  properties: {
+    dnsPrefix: clusterName
+    enableRBAC: true
+    agentPoolProfiles: [
+      {
+        name: 'agentpool'
+        count: nodeCount
+        vmSize: vmSize
+        mode: 'System'
+      }
+    ]
+  }
+}
+
+resource flux 'Microsoft.KubernetesConfiguration/extensions@2021-09-01' = {
+  name: 'flux'
+  scope: aks
+  properties: {
+    extensionType: 'microsoft.flux'
+    scope: {
+      cluster: {
+        releaseNamespace: 'flux-system'
+      }
+    }
+    autoUpgradeMinorVersion: true
+  }
+}
+
+resource fluxConfig 'Microsoft.KubernetesConfiguration/fluxConfigurations@2021-11-01-preview' = {
+  name: 'gitops-demo'
+  scope: aks
+  dependsOn: [
+    flux
+  ]
+  properties: {
+    scope: 'cluster'
+    namespace: 'gitops-demo'
+    sourceKind: 'GitRepository'
+    suspend: false
+    gitRepository: {
+      url: 'https://github.com/herberthmas/ubs'
+      timeoutInSeconds: 600
+      syncIntervalInSeconds: 60
+      repositoryRef: {
+        branch: 'main'
+      }
+
+    }
+    
+
+  }
+}
+
+output clusterName string = aks.name
