@@ -9,7 +9,7 @@ param vmSize string = 'standard_d16ads_v5'
   'Prod'
   'Dev'
 ])
-param environment string
+param environment string = 'Dev'
 param clusterName string = 'aks-HmgDemo${environment}'
 
 module aksModule 'aks-cluster.bicep' = {
