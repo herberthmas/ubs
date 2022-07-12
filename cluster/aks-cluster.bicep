@@ -44,7 +44,7 @@ resource flux 'Microsoft.KubernetesConfiguration/extensions@2021-09-01' = {
 }
 
 resource fluxConfig 'Microsoft.KubernetesConfiguration/fluxConfigurations@2021-11-01-preview' = {
-  name: 'fluxConfig'
+  name: 'flux-config'
   scope: aks
   dependsOn: [
     flux
