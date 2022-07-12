@@ -13,7 +13,7 @@ param nodeCount int = (environment == 'Dev') ? 1 :3
 module aksModule 'aks-cluster.bicep' = {
   name: 'aksDeploy'
   params: {
-    location: rsgModule.outputs.location
+    location: location
     clusterName:clusterName
     vmSize:vmSize
     nodeCount:nodeCount
