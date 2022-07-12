@@ -3,7 +3,7 @@ name: Deploy a Bicep file to Azure
 on:
   push:
     branches: ['main']
-     paths:
+    paths:
       - 'cluster/**'
 
 jobs:
