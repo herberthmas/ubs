@@ -1,6 +1,6 @@
 
-//param location string = resourceGroup().location
-param location string = 'northeurope'
+param location string = resourceGroup().location
+//param location string = 'northeurope'
 
 param vmSize string = 'standard_d16ads_v5'
 param subscriptionID string 
@@ -14,14 +14,6 @@ param environment string = 'Dev'
 param clusterName string = 'aks-HmgDemo${environment}'
 param nodeCount int = (environment == 'Dev') ? 1 :3
 
-module rsgModule 'resource-group.bicep' = {
-  name: 'rsgDeploy'
-  scope: subscription(subscriptionID)
-  params:{
-  name: 'rsg-HmgDemo${environment}'
-  location:location
-  }
-}
 module aksModule 'aks-cluster.bicep' = {
   name: 'aksDeploy'
   params: {
@@ -30,7 +22,5 @@ module aksModule 'aks-cluster.bicep' = {
     vmSize:vmSize
     nodeCount:nodeCount
   }
-  dependsOn: [
-    rsgModule
-  ]
+
 }
