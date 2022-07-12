@@ -36,9 +36,10 @@ resource flux 'Microsoft.KubernetesConfiguration/extensions@2021-09-01' = {
       }
     }
     configurationSettings: {
-      'multiTenancy.enforce': 'false'
+
     }
     autoUpgradeMinorVersion: true
+  
   }
 }
 
@@ -86,4 +87,3 @@ resource fluxConfig 'Microsoft.KubernetesConfiguration/fluxConfigurations@2021-1
   }
 }
 
-output clusterName string = aks.name
