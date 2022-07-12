@@ -3,6 +3,8 @@ name: Deploy a Bicep file to Azure
 on:
   push:
     branches: ['main']
+     paths:
+      - cluster/**
 
 jobs:
 
@@ -25,6 +27,6 @@ jobs:
         with:
           subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION }}
           resourceGroupName: ${{ secrets.AZURE_RG }}
-          template: ./modules.bicep
+          template: ./cluster/modules.bicep
           parameters: environment=Dev
           failOnStdErr: false
