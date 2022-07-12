@@ -1,9 +1,6 @@
 
 param location string = resourceGroup().location
-//param location string = 'northeurope'
-
 param vmSize string = 'standard_d16ads_v5'
-param subscriptionID string 
 
 @description('Specify the environment')
 @allowed([
