@@ -53,7 +53,7 @@ resource fluxConfig 'Microsoft.KubernetesConfiguration/fluxConfigurations@2021-1
     gitRepository: {
       url: 'https://github.com/herberthmas/ubs'
       timeoutInSeconds: 600
-      syncIntervalInSeconds: 600
+      syncIntervalInSeconds: 60
       repositoryRef: {
         branch: 'main'
       }
