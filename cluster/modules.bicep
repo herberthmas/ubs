@@ -1,5 +1,4 @@
 
-
 //param location string = resourceGroup().location
 param location string = 'northeurope'
 
