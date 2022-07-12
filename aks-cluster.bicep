@@ -21,6 +21,7 @@ resource aks 'Microsoft.ContainerService/managedClusters@2021-05-01' = {
         mode: 'System'
       }
     ]
+
   }
 }
 
@@ -34,12 +35,15 @@ resource flux 'Microsoft.KubernetesConfiguration/extensions@2021-09-01' = {
         releaseNamespace: 'flux-system'
       }
     }
+    configurationSettings: {
+      'multiTenancy.enforce': 'false'
+    }
     autoUpgradeMinorVersion: true
   }
 }
 
 resource fluxConfig 'Microsoft.KubernetesConfiguration/fluxConfigurations@2021-11-01-preview' = {
-  name: 'gitops-demo'
+  name: 'fluxConfig'
   scope: aks
   dependsOn: [
     flux
@@ -74,6 +78,9 @@ resource fluxConfig 'Microsoft.KubernetesConfiguration/fluxConfigurations@2021-1
         syncIntervalInSeconds: 600
         retryIntervalInSeconds: 600
         prune: true
+      }
+      patches:{
+
       }
     }
   }
