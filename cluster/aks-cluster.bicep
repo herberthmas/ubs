@@ -68,7 +68,7 @@ resource fluxConfig 'Microsoft.KubernetesConfiguration/fluxConfigurations@2021-1
         path: './workloads'
         dependsOn: []
         timeoutInSeconds: 600
-        syncIntervalInSeconds: 600
+        syncIntervalInSeconds: 60
         validation: 'none'
         prune: true
       }
@@ -76,7 +76,7 @@ resource fluxConfig 'Microsoft.KubernetesConfiguration/fluxConfigurations@2021-1
         path: './namespaces'
         dependsOn: []
         timeoutInSeconds: 600
-        syncIntervalInSeconds: 600
+        syncIntervalInSeconds: 60
         retryIntervalInSeconds: 600
         prune: true
       }
