@@ -36,7 +36,7 @@ resource flux 'Microsoft.KubernetesConfiguration/extensions@2021-09-01' = {
       }
     }
     configurationSettings: {
-      'multiTenancy.enforce': 'false'
+      multiTenancy.enforce: false
     }
     autoUpgradeMinorVersion: true
   }
