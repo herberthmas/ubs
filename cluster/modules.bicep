@@ -7,7 +7,7 @@ param vmSize string = 'standard_d16ads_v5'
   'Dev'
 ])
 param environment string 
-param sourceKind string
+param sourceKind string = '${sourceKind}'
 param clusterName string = 'aks-HmgDemo${environment}'
 param nodeCount int = (environment == 'Dev') ? 1 :3
 
@@ -18,7 +18,7 @@ module aksModule 'aks-cluster.bicep' = {
     clusterName:clusterName
     vmSize:vmSize
     nodeCount:nodeCount
-    sourceKind:= '${sourceKind}'
+    sourceKind:= sourceKind
   }
 
 }
