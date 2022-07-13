@@ -18,7 +18,7 @@ module aksModule 'aks-cluster.bicep' = {
     clusterName:clusterName
     vmSize:vmSize
     nodeCount:nodeCount
-    sourceKind:=sourceKind
+    sourceKind:sourceKind
   }
 
 }
