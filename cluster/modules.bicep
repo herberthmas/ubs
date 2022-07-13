@@ -1,6 +1,7 @@
 param location string = resourceGroup().location
 param vmSize string = 'standard_d16ads_v5'
 
+
 @description('Specify the environment')
 @allowed([
   'Prod'
