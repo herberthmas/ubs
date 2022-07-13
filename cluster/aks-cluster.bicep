@@ -7,6 +7,9 @@ param vmSize string
 resource aks 'Microsoft.ContainerService/managedClusters@2021-05-01' = {
   name: clusterName
   location: location
+  tags: {
+    runDuring:'businessHours'
+  }
   identity: {
     type: 'SystemAssigned'
   }
