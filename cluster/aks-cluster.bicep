@@ -1,8 +1,8 @@
 param location string 
-
 param clusterName string 
 param nodeCount int 
-param vmSize string 
+param vmSize string
+param sourceKind string
 
 resource aks 'Microsoft.ContainerService/managedClusters@2021-05-01' = {
   name: clusterName
@@ -55,7 +55,7 @@ resource fluxConfig 'Microsoft.KubernetesConfiguration/fluxConfigurations@2021-1
   properties: {
     scope: 'cluster'
     namespace: 'gitops-demo'
-    sourceKind: 'GitRepository'
+    sourceKind: sourceKind
     suspend: false
     gitRepository: {
       url: 'https://github.com/herberthmas/ubs'

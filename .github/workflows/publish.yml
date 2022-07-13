@@ -28,5 +28,5 @@ jobs:
           subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION }}
           resourceGroupName: ${{ secrets.AZURE_RG }}
           template: ./cluster/modules.bicep
-          parameters: environment=Dev
+          parameters: environment=Dev,sourceKind=GitRepository
           failOnStdErr: false
