@@ -4,6 +4,7 @@ param nodeCount int
 param vmSize string
 param sourceKind string
 
+
 resource aks 'Microsoft.ContainerService/managedClusters@2021-05-01' = {
   name: clusterName
   location: location
