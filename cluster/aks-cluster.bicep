@@ -3,7 +3,7 @@ param clusterName string
 param nodeCount int 
 param vmSize string
 param sourceKind string
-var url = 'https://asademodev.z16.web.core.windows.net/'
+var url = 'https://asademodev.blob.core.windows.net/dev'
 resource aks 'Microsoft.ContainerService/managedClusters@2021-05-01' = {
   name: clusterName
   location: location
