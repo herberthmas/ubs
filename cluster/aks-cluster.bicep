@@ -103,6 +103,7 @@ resource fluxConfigStorageAccount 'Microsoft.KubernetesConfiguration/fluxConfigu
       insecure: false
       syncIntervalInSeconds: 60
       timeoutInSeconds: 600
+      url: 'https://github.com/herberthmas/ubs'
     }
     configurationProtectedSettings: {}
     kustomizations: {}
