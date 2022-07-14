@@ -3,7 +3,7 @@ param clusterName string
 param nodeCount int 
 param vmSize string
 param sourceKind string
-var url = 'https://asademodev.blob.core.windows.net/dev'
+var url = 'https://asademodev.blob.${environment().suffixes.storage}/dev'
 resource aks 'Microsoft.ContainerService/managedClusters@2021-05-01' = {
   name: clusterName
   location: location
@@ -112,3 +112,5 @@ resource fluxConfigStorageAccount 'Microsoft.KubernetesConfiguration/fluxConfigu
     sourceKind: sourceKind
   }
 }
+
+output url string = url
