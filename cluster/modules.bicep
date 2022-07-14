@@ -7,7 +7,12 @@ param vmSize string = 'standard_d16ads_v5'
   'Prod'
   'Dev'
 ])
-param environment string 
+param environment string
+@description('Specify the storage for the code')
+@allowed([
+  'GitRepository'
+  'Bucket'
+]) 
 param sourceKind string
 param clusterName string = 'aks-HmgDemo${environment}'
 param nodeCount int = (environment == 'Dev') ? 1 :3

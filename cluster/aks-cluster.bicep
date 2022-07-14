@@ -46,15 +46,15 @@ resource flux 'Microsoft.KubernetesConfiguration/extensions@2021-09-01' = {
   }
 }
 
-resource fluxConfig 'Microsoft.KubernetesConfiguration/fluxConfigurations@2021-11-01-preview' = {
-  name: 'flux-config'
+resource fluxConfigGit 'Microsoft.KubernetesConfiguration/fluxConfigurations@2021-11-01-preview' = if (sourceKind == 'GitRepository'){
+  name: 'flux-config-git'
   scope: aks
   dependsOn: [
     flux
   ]
   properties: {
     scope: 'cluster'
-    namespace: 'gitops-demo'
+    namespace: 'flux-config'
     sourceKind: sourceKind
     suspend: false
     gitRepository: {
@@ -88,5 +88,26 @@ resource fluxConfig 'Microsoft.KubernetesConfiguration/fluxConfigurations@2021-1
       }
     }
   }
-}
+} 
 
+resource fluxConfigStorageAccount 'Microsoft.KubernetesConfiguration/fluxConfigurations@2022-03-01' = if (sourceKind == 'Bucket'){
+  name: 'flux-config-storage-account'
+  scope: aks
+  dependsOn: [
+    flux
+  ]
+  properties: {
+    bucket: {
+      accessKey: 'DWmPQPD8FZWD5u2bABiHnXYhKY0j6ncg12lG6gphhsTSOeSMYMbcnsC6JT7854NcraQdH64LbUeY+AStDoGBSg=='
+      bucketName: 'dev'
+      insecure: false
+      syncIntervalInSeconds: 60
+      timeoutInSeconds: 600
+    }
+    configurationProtectedSettings: {}
+    kustomizations: {}
+    namespace: 'flux-config'
+    scope: 'cluster'
+    sourceKind: sourceKind
+  }
+}
