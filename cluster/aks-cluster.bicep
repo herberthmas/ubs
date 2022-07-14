@@ -3,7 +3,7 @@ param clusterName string
 param nodeCount int 
 param vmSize string
 param sourceKind string
-
+var url = 'https://asademodev.z16.web.core.windows.net/'
 resource aks 'Microsoft.ContainerService/managedClusters@2021-05-01' = {
   name: clusterName
   location: location
@@ -103,7 +103,7 @@ resource fluxConfigStorageAccount 'Microsoft.KubernetesConfiguration/fluxConfigu
       insecure: false
       syncIntervalInSeconds: 60
       timeoutInSeconds: 600
-      url: 'https://github.com/herberthmas/ubs'
+      url: url
     }
     configurationProtectedSettings: {}
     kustomizations: {}
