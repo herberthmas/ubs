@@ -1,8 +1,8 @@
 name: Create Temporary Enviroment for PR
 on:
-  pull_request:
+  push:
     branches:
-    - main
+    - ['main']
 jobs:
   build:
     runs-on: ubuntu-latest
