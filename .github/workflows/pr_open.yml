@@ -1,0 +1,31 @@
+name: Create Temporary Enviroment for PR
+on:
+  pull_request:
+    branches:
+    - main
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+      with:
+        submodules: recursive
+    - name: Setup Kube config
+      uses: azure/k8s-set-context@v1
+      with:
+        method: kubeconfig
+        kubeconfig: ${{ secrets.KUBE_CONFIG }}
+    - name: Deploy preview
+      run: |
+        # Install vCluster
+        curl -s -L "https://github.com/loft-sh/vcluster/releases/latest" | sed -nE 's!.*"([^"]*vcluster-linux-amd64)".*!https://github.com\1!p' | xargs -n 1 curl -L -o vcluster && chmod +x vcluster;
+        sudo mv vcluster /usr/local/bin;
+
+        # Create a cluster
+        vcluster create devops-toolkit-pr-${{ github.event.pull_request.number }} --namespace prs --expose 
+        vcluster connect devops-toolkit-pr-${{ github.event.pull_request.number }} --namespace prs
+        export KUBECONFIG=$PWD/kubeconfig.yaml
+    - name: Test
+      run: |
+        echo "I was to lazy to write tests"
