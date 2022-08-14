@@ -17,7 +17,7 @@ param sourceKind string
 param clusterName string = 'aks-HmgDemo${environment}'
 param nodeCount int = (environment == 'Dev') ? 1 :3
 
-module aksModule 'kubernetes' = {
+module aksModule 'kubernetes.bicep' = {
   name: 'aksDeploy'
   params: {
     location: location
