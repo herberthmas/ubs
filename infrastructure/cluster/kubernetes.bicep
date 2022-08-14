@@ -45,7 +45,50 @@ resource flux 'Microsoft.KubernetesConfiguration/extensions@2021-09-01' = {
   
   }
 }
+resource fluxConfigGit 'Microsoft.KubernetesConfiguration/fluxConfigurations@2021-11-01-preview' = if (sourceKind == 'GitRepository'){
+  name: 'flux-bootstrap'
+  scope: aks
+  dependsOn: [
+    flux
+  ]
+  properties: {
+    scope: 'cluster'
+    namespace: 'flux-bootstrap'
+    sourceKind: sourceKind
+    suspend: false
+    gitRepository: {
+      url: 'https://github.com/herberthmas/ubs'
+      timeoutInSeconds: 600
+      syncIntervalInSeconds: 60
+      repositoryRef: {
+        branch: 'main'
+      }
 
+    }
+    kustomizations: {
+      staging: {
+        path: '../../clusters/staging'
+        dependsOn: []
+        timeoutInSeconds: 600
+        syncIntervalInSeconds: 60
+        validation: 'none'
+        prune: true
+      }
+      production: {
+        path: '../../clusters/production'
+        dependsOn: []
+        timeoutInSeconds: 600
+        syncIntervalInSeconds: 60
+        retryIntervalInSeconds: 600
+        prune: true
+      }
+      patches:{
+
+      }
+    }
+  }
+} 
+/*
 resource fluxConfigGit 'Microsoft.KubernetesConfiguration/fluxConfigurations@2021-11-01-preview' = if (sourceKind == 'GitRepository'){
   name: 'flux-config-git'
   scope: aks
@@ -112,5 +155,5 @@ resource fluxConfigStorageAccount 'Microsoft.KubernetesConfiguration/fluxConfigu
     sourceKind: sourceKind
   }
 }
-
+*/
 output url string = url
