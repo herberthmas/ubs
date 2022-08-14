@@ -29,6 +29,6 @@ jobs:
           resourceGroupName: ${{ secrets.AZURE_RG }}
           template: ./cluster/modules.bicep
           parameters: 
-            sourceKind=Bucket
+            sourceKind=GitRepository
             environment=Dev
           failOnStdErr: false

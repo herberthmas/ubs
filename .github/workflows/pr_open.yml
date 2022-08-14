@@ -23,8 +23,8 @@ jobs:
         sudo mv vcluster /usr/local/bin;
 
         # Create a cluster
-        vcluster create devops-toolkit-pr-${{ github.event.pull_request.number }} --namespace prs --expose 
-        vcluster connect devops-toolkit-pr-${{ github.event.pull_request.number }} --namespace prs
+        vcluster create vcluster-pr-${{ github.event.pull_request.number }} --namespace vcluster-prs --expose 
+        vcluster connect vcluster-pr-${{ github.event.pull_request.number }} --namespace vcluster-prs
         export KUBECONFIG=$PWD/kubeconfig.yaml
     - name: Test
       run: |
