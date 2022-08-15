@@ -1,5 +1,4 @@
 param location string 
-
 param clusterName string 
 param nodeCount int 
 param vmSize string
