@@ -74,6 +74,7 @@ resource fluxConfigGit 'Microsoft.KubernetesConfiguration/fluxConfigurations@202
         validation: 'none'
         prune: true
       }/*
+      
       production: {
         path: './environments/production'
         dependsOn: []
