@@ -28,3 +28,5 @@ module aksModule 'kubernetes.bicep' = {
   }
 
 }
+
+output clusterName string = clusterName 
