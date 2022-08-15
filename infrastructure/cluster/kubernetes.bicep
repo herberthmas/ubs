@@ -45,7 +45,7 @@ resource flux 'Microsoft.KubernetesConfiguration/extensions@2021-09-01' = {
   
   }
 }
-resource fluxConfigGit 'Microsoft.KubernetesConfiguration/fluxConfigurations@2021-11-01-preview' = if (sourceKind == 'GitRepository'){
+resource fluxConfigGit 'Microsoft.KubernetesConfiguration/fluxConfigurations@2021-11-01-preview' = {
   name: 'flux-bootstrap'
   scope: aks
   dependsOn: [
