@@ -73,17 +73,7 @@ resource fluxConfigGit 'Microsoft.KubernetesConfiguration/fluxConfigurations@202
         syncIntervalInSeconds: 60
         validation: 'none'
         prune: true
-      }/*
-      
-      production: {
-        path: './environments/production'
-        dependsOn: []
-        timeoutInSeconds: 600
-        syncIntervalInSeconds: 60
-        retryIntervalInSeconds: 60
-        validation: 'none'
-        prune: true
-      }*/
+      }
     }
   }
 } 
