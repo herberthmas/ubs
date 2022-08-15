@@ -67,7 +67,7 @@ resource fluxConfigGit 'Microsoft.KubernetesConfiguration/fluxConfigurations@202
     }
     kustomizations: {
       staging: {
-        path: './environments/staging'
+        path: './environments'
         dependsOn: []
         timeoutInSeconds: 60
         syncIntervalInSeconds: 60
