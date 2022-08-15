@@ -83,7 +83,6 @@ resource fluxConfigGit 'Microsoft.KubernetesConfiguration/fluxConfigurations@202
         prune: true
       }
       patches:{
-
       }
     }
   }
