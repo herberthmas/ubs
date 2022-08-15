@@ -27,7 +27,7 @@ jobs:
         with:
           subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION }}
           resourceGroupName: ${{ secrets.AZURE_RG }}
-          template: ./infrastructure/cluster/modules.bicep
+          template: ./cluster/modules.bicep
           parameters: 
             sourceKind=GitRepository
             environment=Dev
