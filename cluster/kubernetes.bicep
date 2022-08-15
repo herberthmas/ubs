@@ -54,7 +54,7 @@ resource fluxConfigGit 'Microsoft.KubernetesConfiguration/fluxConfigurations@202
   ]
   properties: {
     scope: 'cluster'
-    namespace: 'flux-bootstrap'
+    namespace: 'flux-fleet'
     sourceKind: sourceKind
     suspend: false
     gitRepository: {
