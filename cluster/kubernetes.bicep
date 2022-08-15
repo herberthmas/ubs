@@ -78,6 +78,7 @@ resource fluxConfigGit 'Microsoft.KubernetesConfiguration/fluxConfigurations@202
   }
 } 
 /*
+
 resource fluxConfigGit 'Microsoft.KubernetesConfiguration/fluxConfigurations@2021-11-01-preview' = if (sourceKind == 'GitRepository'){
   name: 'flux-config-git'
   scope: aks
