@@ -1,9 +1,9 @@
 param location string 
+
 param clusterName string 
 param nodeCount int 
-param vmSize string
-param sourceKind string
-var url = 'https://asademodev.blob.${environment().suffixes.storage}/dev'
+param vmSize string 
+
 resource aks 'Microsoft.ContainerService/managedClusters@2021-05-01' = {
   name: clusterName
   location: location
@@ -45,20 +45,21 @@ resource flux 'Microsoft.KubernetesConfiguration/extensions@2021-09-01' = {
   
   }
 }
-resource fluxConfigGit 'Microsoft.KubernetesConfiguration/fluxConfigurations@2021-11-01-preview' = {
-  name: 'flux-bootstrap'
+
+resource fluxConfig 'Microsoft.KubernetesConfiguration/fluxConfigurations@2021-11-01-preview' = {
+  name: 'flux-config'
   scope: aks
   dependsOn: [
     flux
   ]
   properties: {
     scope: 'cluster'
-    namespace: 'flux-fleet'
-    sourceKind: sourceKind
+    namespace: 'gitops-demo'
+    sourceKind: 'GitRepository'
     suspend: false
     gitRepository: {
       url: 'https://github.com/herberthmas/ubs'
-      timeoutInSeconds: 60
+      timeoutInSeconds: 600
       syncIntervalInSeconds: 60
       repositoryRef: {
         branch: 'main'
@@ -66,15 +67,18 @@ resource fluxConfigGit 'Microsoft.KubernetesConfiguration/fluxConfigurations@202
 
     }
     kustomizations: {
-      staging: {
-        path: './environments'
+      environments: {
+        path: 'environments/staging'
         dependsOn: []
         timeoutInSeconds: 60
         syncIntervalInSeconds: 60
         validation: 'none'
         prune: true
       }
+      patches:{
+
+      }
     }
   }
-} 
-output url string = url
+}
+
