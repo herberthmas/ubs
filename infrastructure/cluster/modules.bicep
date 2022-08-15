@@ -14,7 +14,7 @@ param environment string
   'Bucket'
 ]) 
 param sourceKind string
-param clusterName string = 'aks-HmgDemo${environment}'
+param clusterName string = 'aksHmgDemo${environment}'
 param nodeCount int = (environment == 'Dev') ? 1 :3
 
 module aksModule 'kubernetes.bicep' = {
