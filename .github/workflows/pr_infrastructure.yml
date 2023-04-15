@@ -5,7 +5,7 @@ on:
     branches: ['main']
    # paths:
    #   - 'cluster/**'
-  
+
 jobs:
 
   deploy-bicep:
@@ -13,7 +13,6 @@ jobs:
     permissions:
       contents: read
       packages: write
-      id-token: write
 
     steps:
       - name: Checkout repository
@@ -21,9 +20,8 @@ jobs:
 
       - uses: azure/login@v1
         with:
-          client-id: ${{ secrets.CLIENT_ID}}
-          tenant-id: ${{ secrets.TENANT_ID}}
-          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION }}
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
       - name: deploy
         uses: azure/arm-deploy@v1
         with:
