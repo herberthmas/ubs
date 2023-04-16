@@ -8,6 +8,9 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
       - name: 'Az CLI login'
         uses: azure/login@v1
         with:
@@ -24,7 +27,7 @@ jobs:
         with:
           subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION }}
           resourceGroupName: ${{ secrets.AZURE_RG }}
-          template: 'cluster/modules.bicep'
+          template: ./cluster/modules.bicep
           parameters: 
             sourceKind=GitRepository
             environment=Dev
