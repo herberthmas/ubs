@@ -17,8 +17,7 @@ jobs:
           
       - name: 'Run az commands'
         run: |
-          pwd 
-          ${{ github.workspace }}
+          pwd
 
       - name: deploy
         uses: azure/arm-deploy@v1
