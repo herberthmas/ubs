@@ -11,14 +11,14 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: 'Az CLI login'
+      - name: 'Az CLI login - OIDC Connect'
         uses: azure/login@v1
         with:
           client-id: ${{ secrets.CLIENT_ID }}
           tenant-id: ${{ secrets.TENANT_ID }}
           subscription-id: ${{ secrets.AZURE_SUBSCRIPTION }}
           
-      - name: deploy
+      - name: 'Deploy Kubernetes Cluster'
         uses: azure/arm-deploy@v1
         with:
           subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION }}
