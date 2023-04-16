@@ -27,5 +27,5 @@ jobs:
           template: ../../../../cluster/modules.bicep
           parameters: 
             sourceKind=GitRepository
-            environment=Dev
+            environment=UAT
           failOnStdErr: false
