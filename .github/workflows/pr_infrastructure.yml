@@ -14,9 +14,14 @@ jobs:
           client-id: ${{ secrets.CLIENT_ID }}
           tenant-id: ${{ secrets.TENANT_ID }}
           subscription-id: ${{ secrets.AZURE_SUBSCRIPTION }}
-  
-      - name: 'Run az commands'
-        run: |
-          az account show
-          az group list
-          pwd 
+          
+      - name: deploy
+        uses: azure/arm-deploy@v1
+        with:
+          subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION }}
+          resourceGroupName: ${{ secrets.AZURE_RG }}
+          template: ./cluster/modules.bicep
+          parameters: 
+            sourceKind=GitRepository
+            environment=Dev
+          failOnStdErr: false
