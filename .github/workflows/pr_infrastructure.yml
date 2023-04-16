@@ -18,10 +18,6 @@ jobs:
           tenant-id: ${{ secrets.TENANT_ID }}
           subscription-id: ${{ secrets.AZURE_SUBSCRIPTION }}
           
-      - name: 'Run az commands'
-        run: |
-          pwd
-
       - name: deploy
         uses: azure/arm-deploy@v1
         with:
