@@ -18,13 +18,14 @@ jobs:
       - name: 'Run az commands'
         run: |
           pwd 
+          ${{ github.workspace }}
 
       - name: deploy
         uses: azure/arm-deploy@v1
         with:
           subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION }}
           resourceGroupName: ${{ secrets.AZURE_RG }}
-          template: ./cluster/modules.bicep
+          template: 'cluster/modules.bicep'
           parameters: 
             sourceKind=GitRepository
             environment=Dev
