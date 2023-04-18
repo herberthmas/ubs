@@ -71,7 +71,7 @@ resource fluxConfigGit 'Microsoft.KubernetesConfiguration/fluxConfigurations@202
         dependsOn: []
         timeoutInSeconds: 60
         syncIntervalInSeconds: 60
-        retryIntervalInSeconds: 60
+        //retryIntervalInSeconds: 60
         validation: 'none'
         prune: true
       }
