@@ -4,7 +4,7 @@ metadata:
   name: ubs
   namespace: podinfo
 spec:
-  interval: 1m
+  interval: 2m
   url: https://github.com/herberthmas/ubs
   ref:
     branch: main
