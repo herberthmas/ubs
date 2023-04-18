@@ -59,7 +59,7 @@ resource fluxConfigGit 'Microsoft.KubernetesConfiguration/fluxConfigurations@202
     gitRepository: {
       url: 'https://github.com/herberthmas/ubs'
       timeoutInSeconds: 60
-      syncIntervalInSeconds: 60
+      syncIntervalInSeconds: 120
       repositoryRef: {
         branch: 'main'
       }
@@ -70,7 +70,7 @@ resource fluxConfigGit 'Microsoft.KubernetesConfiguration/fluxConfigurations@202
         path: 'clusters/staging'
         dependsOn: []
         timeoutInSeconds: 60
-        syncIntervalInSeconds: 60
+        syncIntervalInSeconds: 120
         //retryIntervalInSeconds: 60
         validation: 'none'
         prune: true
